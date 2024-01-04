@@ -144,7 +144,7 @@ In our example, the name of the image will be `simple_image`, and the tag just `
 
 So recapitulating we have;
 
-- Repository location: `central1`
+- Repository location: `us-central1`
 - Project id: `cumplo-jobs`
 - Artifact repository id: `cumplo-jobs-docker-repo`
 - Image Name: `simple_image`
