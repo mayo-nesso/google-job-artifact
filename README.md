@@ -1,6 +1,6 @@
 # Running Google Jobs with a custom Docker image
 
-If you've ever found yourself repeating a task quite frequently, and (like me) you paid for a service to have a server, (or used your own machine). This article may help you!
+If you've ever found yourself repeating a task quite frequently, and (like me) you paid for a service to have a server, (or used your own machine). This repo may help you!
 
 Alternatively, Google has a product called Google Run, where you can, in their own words `Run applications fast and securely in a fully managed environment`.
 
@@ -42,15 +42,15 @@ So, according to Google, we're going to use Artifact Registry because it's the c
 
 There are three types of repositories:
 
-- Standard: These are regular repositories for your private artifacts. You upload and download artifacts directly with these repositories and use Artifact Analysis to scan for vulnerabilities and other metadata.
-- Remote: This is like a repository that goes on vacation. It acts as a proxy for an external source, like Docker Hub, Maven Central, or the Python Package Index (PyPI). It fetches stuff from an external source and keeps a copy. Lazy but effective!
-- Virtual: This is the master of ceremonies. It acts as a single access point to download, install, or deploy artifacts from one or more upstream repositories. Virtual repositories simplify client configuration for consumers of your artifacts.
+- **Standard:** These are regular repositories for your private artifacts. You upload and download artifacts directly with these repositories and use Artifact Analysis to scan for vulnerabilities and other metadata.
+- **Remote:** This is like a repository that goes on vacation. It acts as a proxy for an external source, like Docker Hub, Maven Central, or the Python Package Index (PyPI). It fetches stuff from an external source and keeps a copy. Lazy but effective!
+- **Virtual:** This is the master of ceremonies. It acts as a single access point to download, install, or deploy artifacts from one or more upstream repositories. Virtual repositories simplify client configuration for consumers of your artifacts.
 
 (Want more details? [Google: Repository Overview](https://cloud.google.com/artifact-registry/docs/repositories))
 
 Although there are different 'artifact' options we will focus on creating a Docker artifact in a Standard repository.
 
-For this we will do the following steps:
+For this, we will do the following steps:
 0.- Create a new Google Project
 1.- Create a private Docker repository in Artifact Registry
 2.- Set up authentication (this will allow Docker to push the image to our Artifact Registry in Google)
@@ -58,7 +58,7 @@ For this we will do the following steps:
 
 ### 0.- Create a new Google Project
 
-We will create a new project 'cumlo-jobs', make sure Billing is activated, and then activate the `Artifact Registry API`.
+We will create a new project 'cumplo-jobs', make sure Billing is activated, and then activate the `Artifact Registry API`.
 Then we will install Docker and Google Cloud CLI.
 
 We initialize the Google Cloud CLI and when prompted, we select the project we just created.
@@ -138,9 +138,9 @@ We go to `our_docker_image` folder (where our Dockerfile is located), then we wi
 
 In this step, we have to carefully specify the `name` of our container since it has to have some **important details**.
 
-The **important details** are the `zone`, the `project`, and the `artifact repository name` that we have been using.
+The **important details** are the `Repository location`, the `Project id`, and the `Artifact Repository id` that we have been using.
 
-In our example, the name of the image will be `simple_image`, the tag `tag1`.
+In our example, the name of the image will be `simple_image`, and the tag just `tag1`.
 
 So recapitulating we have;
 
@@ -250,7 +250,7 @@ After a moment, our Job will be created!
 
 ![Job already created](ims/sc_9.png)
 
-And if everything goes well, we should see the green light after our test run:
+If everything goes well, we should see the green light after our test run:
 
 ![Job executed](ims/sc_10.png)
 
@@ -264,6 +264,7 @@ And voila!
 
 Useful links:
 
+- [Google: Repository Overview](https://cloud.google.com/artifact-registry/docs/repositories)
 - [Google Doc: Store Docker container images in Artifact Registry](https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images)
 - [Google Doc: Create Jobs Docs](https://cloud.google.com/run/docs/create-jobs#console)
 - [Docker Doc: Multi-platform images](https://docs.docker.com/build/building/multi-platform/)
